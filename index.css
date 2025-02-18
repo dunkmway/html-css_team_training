@@ -1,0 +1,138 @@
+:root {
+    --primary-background: #e1dfb6;
+    --secondary-background: #7a9244;
+
+    --primary-text-color: #5c452d;
+    --secondary-text-color: #e1dfb6;
+    --accent-color-light: #c5ee7d;
+    --accent-color-dark: #8cb04e;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--primary-background);
+    color: var(--primary-text-color);
+    font-family: "Roboto", serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+p {
+    max-width: 75ch;
+    text-wrap: pretty;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 1em;
+    gap: 0.5em;
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+
+    .logo {
+        max-width: 3rem;
+        margin-right: 1em;
+    }
+
+    #hamburger {
+        position: absolute;
+        visibility: hidden;
+
+        &:checked + nav {
+            display: flex;
+        }
+
+        &:checked ~ .hamburger {
+            .hamburger-bar:nth-child(1) {
+                transform: translateY(0.5em) rotate(45deg);
+            }
+
+            .hamburger-bar:nth-child(2) {
+                visibility: hidden;
+            }
+
+            .hamburger-bar:nth-child(3) {
+                transform: translateY(-0.5em) rotate(-45deg);
+            }
+        }
+    }
+
+    nav {
+        grid-row: 2;
+        display: none;
+        flex-direction: column;
+        align-items: start;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            border-bottom: 4px solid transparent;
+            padding: 0.5em;
+
+            &:hover {
+                border-bottom-color: var(--accent-color-dark);
+            }
+        }
+    }
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25em;
+        cursor: pointer;
+        
+        .hamburger-bar {
+            width: 2em;
+            height: 0.25em;
+            background-color: var(--primary-text-color);
+            transition: transform ease-in .1s;
+        }
+    }
+}
+
+main {
+    flex: 1;
+
+    #hero {
+        min-height: 600px;
+        background-image: url("/images/shrek.jpg");
+        background-size: cover;
+        background-position-x: 72%;
+        padding: 1em;
+
+        .page-heading {
+            background-color: var(--accent-color-dark);
+            padding: 1em;
+            border-radius: 1em;
+
+            h1 {
+                margin: 0;
+            }
+        }
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-background);
+    color: var(--secondary-text-color);
+    padding: 1em;
+
+    .column {
+        flex: 1;
+    }
+}
