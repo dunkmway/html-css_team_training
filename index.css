@@ -27,21 +27,30 @@ img {
     max-width: 100%;
 }
 
-p {
+p, li {
     max-width: 75ch;
     text-wrap: pretty;
 }
 
+.content {
+    max-width: 1800px;
+    margin-inline: auto;
+}
+
 header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    padding: 1em;
-    gap: 0.5em;
     position: sticky;
     top: 0;
     background-color: inherit;
 
+    .content {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        padding: 1em;
+        gap: 0.5em;
+
+    }
+    
     .logo {
         max-width: 3rem;
         margin-right: 1em;
@@ -75,12 +84,13 @@ header {
         display: none;
         flex-direction: column;
         align-items: start;
+        margin-top: 1em;
 
         a {
             text-decoration: none;
             color: inherit;
             border-bottom: 4px solid transparent;
-            padding: 0.5em;
+            padding: 0.25em 0.5em;
 
             &:hover {
                 border-bottom-color: var(--accent-color-dark);
@@ -103,36 +113,144 @@ header {
     }
 }
 
+@media (width >= 500px) {
+    header .content {
+        display: flex;
+        justify-content: space-between;
+
+        #hamburger ~ nav {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            margin-top: 0;
+        }
+
+        .hamburger {
+            display: none;
+        }
+    }
+}
+
 main {
     flex: 1;
+
+    section {
+        padding: 1em;
+
+        h2 {
+            text-align: center;
+        }
+    }
 
     #hero {
         min-height: 600px;
         background-image: url("/images/shrek.jpg");
         background-size: cover;
-        background-position-x: 72%;
-        padding: 1em;
+        background-position: 72% 22%;
 
         .page-heading {
             background-color: var(--accent-color-dark);
-            padding: 1em;
+            padding: 1.5em;
             border-radius: 1em;
+            max-width: 500px;
 
             h1 {
                 margin: 0;
             }
+
+            p {
+                display: none;
+                margin-top: 0.5em;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media (width >= 1100px) {
+        #hero {
+            .page-heading {
+                margin-top: 5em;
+                
+                p {
+                    display: block;
+                }
+            }
+
+        }
+    }
+
+    .card-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+
+        .card {
+            background-color: var(--accent-color-dark);
+            color: var(--secondary-text-color);
+            padding: 1em;
+            border-radius: 1em;
+            flex: 1;
+            max-width: 40ch;
+
+            img {
+                margin-inline: auto;
+                margin-bottom: 1em;
+            }
+        }
+    }
+
+    @media (width >= 1000px) {
+        .card-wrapper {
+            flex-direction: row;
+            align-items: normal;
+        }
+    }
+
+    #cardsTwo {
+        
+        .card-wrapper {
+            margin-bottom: 1em;
         }
     }
 }
 
 footer {
-    display: flex;
-    flex-direction: column;
     background-color: var(--secondary-background);
     color: var(--secondary-text-color);
     padding: 1em;
 
-    .column {
-        flex: 1;
+    .columns {
+        display: flex;
+        flex-direction: column;
+    
+        .column {
+            flex: 1;
+        }
+    
+        ul {
+            padding-left: 20px;
+        }
+    }
+
+    @media (width >= 1000px) {
+        .columns {
+            flex-direction: row;
+
+            .column:last-child {
+                text-align: end;
+
+                p {
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+
+    .copyright {
+        max-width: none;
+        text-align: center;
     }
 }
